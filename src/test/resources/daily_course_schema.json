@@ -1,0 +1,136 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "dailycourses12345",
+  "type": "object",
+  "title": "CBR JSON Schema",
+  "description": "JSON Schema for testing",
+  "required": [
+    "Date",
+    "PreviousDate",
+    "PreviousURL",
+    "Timestamp",
+    "Valute"
+  ],
+  "properties": {
+    "Date": {
+      "$id": "#/properties/Date",
+      "type": "string",
+      "title": "The Date Schema",
+      "default": "",
+      "examples": [
+        "2020-03-07T11:30:00+03:00"
+      ]
+    },
+    "PreviousDate": {
+      "$id": "#/properties/PreviousDate",
+      "type": "string",
+      "title": "The Previous date Schema",
+      "default": "",
+      "examples": [
+        "2020-03-06T11:30:00+03:00"
+      ]
+    },
+    "PreviousURL": {
+      "$id": "#/properties/PreviousURL",
+      "type": "string",
+      "title": "The Previous url Schema",
+      "default": "",
+      "examples": [
+        "//www.cbr-xml-daily.ru/archive/2020/03/06/daily_json.js"
+      ]
+    },
+    "Timestamp": {
+      "$id": "#/properties/Timestamp",
+      "type": "string",
+      "title": "The Timestamp Schema",
+      "default": "",
+      "examples": [
+        "2020-03-08T14:00:00+03:00"
+      ]
+    },
+    "Valute": {
+      "$id": "#/properties/Valute",
+      "type": "object",
+      "title": "The Valute Schema",
+      "default": {},
+      "examples": [
+        {
+          "USD": {
+            "Previous": 76.1854,
+            "Nominal": 1.0,
+            "NumCode": "840",
+            "Value": 77.5175,
+            "CharCode": "USD",
+            "ID": "R01235",
+            "Name": "Доллар США"
+          }
+        }
+      ],
+      "required": [
+        "USD",
+        "EUR"
+      ],
+      "properties": {
+        "USD": {
+          "$id": "#/properties/Valute/properties/AUD",
+          "type": "object",
+          "title": "The Aud Schema",
+          "default": {},
+          "required": [
+            "ID",
+            "NumCode",
+            "CharCode",
+            "Nominal",
+            "Name",
+            "Value",
+            "Previous"
+          ],
+          "properties": {
+            "ID": {
+              "$id": "#/properties/Valute/properties/USD/properties/ID",
+              "type": "string",
+              "title": "The Id Schema",
+              "default": ""
+            },
+            "NumCode": {
+              "$id": "#/properties/Valute/properties/USD/properties/NumCode",
+              "type": "string",
+              "title": "The Numcode Schema",
+              "default": ""
+            },
+            "CharCode": {
+              "$id": "#/properties/Valute/properties/USD/properties/CharCode",
+              "type": "string",
+              "title": "The Charcode Schema",
+              "default": ""
+            },
+            "Nominal": {
+              "$id": "#/properties/Valute/properties/USD/properties/Nominal",
+              "type": "integer",
+              "title": "The Nominal Schema",
+              "default": 0
+            },
+            "Name": {
+              "$id": "#/properties/Valute/properties/USD/properties/Name",
+              "type": "string",
+              "title": "The Name Schema",
+              "default": ""
+            },
+            "Value": {
+              "$id": "#/properties/Valute/properties/USD/properties/Value",
+              "type": "number",
+              "title": "The Value Schema",
+              "default": 0
+            },
+            "Previous": {
+              "$id": "#/properties/Valute/properties/USD/properties/Previous",
+              "type": "number",
+              "title": "The Previous Schema",
+              "default": 0
+            }
+          }
+        }
+      }
+    }
+  }
+}
