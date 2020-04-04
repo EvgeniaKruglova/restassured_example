@@ -1,5 +1,7 @@
 package ru;
 
+import com.github.fge.jsonschema.cfg.ValidationConfiguration;
+import com.github.fge.jsonschema.main.JsonSchemaFactory;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
@@ -9,6 +11,8 @@ import org.apache.http.HttpStatus;
 
 import java.util.Properties;
 
+import static com.github.fge.jsonschema.SchemaVersion.DRAFTV4;
+
 public class TestBase {
 
     public RequestSpecification requestSpecification;
@@ -16,15 +20,25 @@ public class TestBase {
 
     @SneakyThrows
     public TestBase(String baseURI) {
-
         props = new Properties();
-        props.load(getClass().getClassLoader().getResourceAsStream("config.properties"));
-
+        props.load(getClass()
+                .getClassLoader()
+                .getResourceAsStream("config.properties")
+        );
         //Rest Assured config
         RestAssured.baseURI = props.getProperty(baseURI);
-
         //basic request setting
         requestSpecification = RestAssured.given().contentType(ContentType.JSON);
+    }
+
+    protected JsonSchemaFactory createSchemaFactory() {
+        return JsonSchemaFactory
+                .newBuilder()
+                .setValidationConfiguration(ValidationConfiguration
+                        .newBuilder()
+                        .setDefaultVersion(DRAFTV4)
+                        .freeze())
+                .freeze();
     }
 
     protected ValidatableResponse getWith200Status(String endPoint) {

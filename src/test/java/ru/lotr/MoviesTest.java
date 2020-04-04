@@ -2,7 +2,7 @@ package ru.lotr;
 
 import com.google.gson.reflect.TypeToken;
 import org.junit.Test;
-import ru.endpoints.LotrEndpoint;
+import ru.endpoints.LotrEndpoints;
 import ru.models.lotr.BaseResponse;
 import ru.models.lotr.movies.Movie;
 
@@ -20,11 +20,13 @@ public class MoviesTest extends LotrTest {
 
     @Test
     public void testMovies() {
-        String json = getWith200Status(LotrEndpoint.MOVIES).extract().response().getBody().prettyPrint();
+        String json = getWith200Status(LotrEndpoints.MOVIES)
+                .extract().response().getBody().prettyPrint();
+
         BaseResponse<Movie> response = gson.fromJson(json, new TypeToken<BaseResponse<Movie>>(){}.getType());
         List<Movie> resultMovies = response.getDocs();
 
-        assertThat(resultMovies).hasSize(8);
+        assertThat(resultMovies).hasSize(6);
     }
 
 }

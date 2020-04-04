@@ -7,7 +7,6 @@ public class LotrTest extends TestBase {
 
     protected final Gson gson;
 
-
     public LotrTest() {
         super("lotr_api.uri");
         gson = new Gson();

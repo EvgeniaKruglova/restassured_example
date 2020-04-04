@@ -1,6 +1,6 @@
 package ru.endpoints;
 
-public interface LotrEndpoint {
+public interface LotrEndpoints {
 
     String BOOKS = "/book";
     String BOOK = "/book/{id}";

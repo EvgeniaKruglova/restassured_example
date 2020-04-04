@@ -1,15 +1,11 @@
 package ru.cbr;
 
-import com.github.fge.jsonschema.cfg.ValidationConfiguration;
 import com.github.fge.jsonschema.main.JsonSchemaFactory;
-import ru.endpoints.CBREndPoints;
-import io.restassured.RestAssured;
-import org.apache.http.HttpStatus;
 import org.junit.Before;
 import org.junit.Test;
 import ru.TestBase;
+import ru.endpoints.CBREndPoints;
 
-import static com.github.fge.jsonschema.SchemaVersion.DRAFTV4;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.core.IsEqual.equalTo;
 
@@ -23,13 +19,7 @@ public class CBRTest extends TestBase {
 
     @Before
     public void setUp() {
-        jsonSchemaFactory = JsonSchemaFactory
-                .newBuilder()
-                .setValidationConfiguration(ValidationConfiguration
-                        .newBuilder()
-                        .setDefaultVersion(DRAFTV4)
-                        .freeze())
-                .freeze();
+        jsonSchemaFactory = createSchemaFactory();
     }
 
     @Test

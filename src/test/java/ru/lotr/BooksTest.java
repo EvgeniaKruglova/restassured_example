@@ -2,7 +2,7 @@ package ru.lotr;
 
 import com.google.gson.reflect.TypeToken;
 import org.junit.Test;
-import ru.endpoints.LotrEndpoint;
+import ru.endpoints.LotrEndpoints;
 import ru.models.lotr.BaseResponse;
 import ru.models.lotr.books.Book;
 
@@ -14,7 +14,7 @@ public class BooksTest extends LotrTest {
 
     @Test
     public void testBooks() {
-        String json = getWith200Status(LotrEndpoint.BOOKS).extract().response().getBody().prettyPrint();
+        String json = getWith200Status(LotrEndpoints.BOOKS).extract().response().getBody().prettyPrint();
         BaseResponse<Book> response = gson.fromJson(json, new TypeToken<BaseResponse<Book>>(){}.getType());
         List<Book> resultBooks = response.getDocs();
 
