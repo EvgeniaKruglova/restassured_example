@@ -23,7 +23,6 @@ public class BooksTest extends LotrTest {
                 new Book("5cf58077b53e011a64671583", "The Two Towers"),
                 new Book("5cf58080b53e011a64671584", "The Return Of The King")
         );
-
     }
 
 }
