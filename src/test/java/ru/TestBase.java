@@ -31,16 +31,6 @@ public class TestBase {
         requestSpecification = RestAssured.given().contentType(ContentType.JSON);
     }
 
-    protected JsonSchemaFactory createSchemaFactory() {
-        return JsonSchemaFactory
-                .newBuilder()
-                .setValidationConfiguration(ValidationConfiguration
-                        .newBuilder()
-                        .setDefaultVersion(DRAFTV4)
-                        .freeze())
-                .freeze();
-    }
-
     protected ValidatableResponse getWith200Status(String endPoint) {
         return requestSpecification
                 .get(endPoint)
