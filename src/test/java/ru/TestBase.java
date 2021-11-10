@@ -1,17 +1,16 @@
 package ru;
 
-import com.github.fge.jsonschema.cfg.ValidationConfiguration;
-import com.github.fge.jsonschema.main.JsonSchemaFactory;
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import lombok.SneakyThrows;
 import org.apache.http.HttpStatus;
+import ru.endpoints.LotrEndpoints;
 
 import java.util.Properties;
-
-import static com.github.fge.jsonschema.SchemaVersion.DRAFTV4;
 
 public class TestBase {
 
@@ -31,11 +30,20 @@ public class TestBase {
         requestSpecification = RestAssured.given().contentType(ContentType.JSON);
     }
 
+    @Step("Запрос к {endPoint} выполнился с кодом 200")
     protected ValidatableResponse getWith200Status(String endPoint) {
+
         return requestSpecification
                 .get(endPoint)
                 .then()
+                .assertThat()
                 .statusCode(HttpStatus.SC_OK);
     }
+
+    @Attachment
+    protected String getJsonResponseBody(ValidatableResponse response) {
+        return response.extract().response().getBody().prettyPrint();
+    }
+
 
 }

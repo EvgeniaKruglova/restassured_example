@@ -8,7 +8,6 @@ import java.util.List;
 public class BaseResponse<T> {
 
     List<T> docs;
-    Pages pages;
-    Items items;
+    Integer total;
 
 }

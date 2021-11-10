@@ -1,6 +1,8 @@
 package ru.lotr;
 
 import com.google.gson.reflect.TypeToken;
+import io.qameta.allure.Step;
+import io.restassured.response.ValidatableResponse;
 import org.junit.Test;
 import ru.endpoints.LotrEndpoints;
 import ru.models.lotr.BaseResponse;
@@ -14,7 +16,8 @@ public class BooksTest extends LotrTest {
 
     @Test
     public void testBooks() {
-        String json = getWith200Status(LotrEndpoints.BOOKS).extract().response().getBody().prettyPrint();
+        ValidatableResponse booksResponse = getWith200Status(LotrEndpoints.BOOKS);
+        String json = getJsonResponseBody(booksResponse);
         BaseResponse<Book> response = gson.fromJson(json, new TypeToken<BaseResponse<Book>>(){}.getType());
         List<Book> resultBooks = response.getDocs();
 
