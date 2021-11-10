@@ -4,7 +4,7 @@ gradle/
 .idea/*
 !/.idea/runConfigurations
 
-./ajcore.*
+/ajcore.*
 
 # Ignore Gradle build output directory
 build/
